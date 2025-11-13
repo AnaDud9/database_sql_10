@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Місія SQL: SELECT, INSERT, DELETE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e88e5; /* Blue */
+            border-bottom: 3px solid #1e88e5;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 2em;
+        }
+        h2 {
+            color: #43a047; /* Green */
+            margin-top: 30px;
+            padding-left: 10px;
+            border-left: 5px solid #43a047;
+        }
+        h3 {
+            color: #e53935; /* Red */
+        }
+        .theory, .task-list, .check {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #bbdefb;
+        }
+        .theory p {
+            font-style: italic;
+            color: #1565c0;
+        }
+        .button-link {
+            display: inline-block;
+            background-color: #ff9800; /* Orange */
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .button-link:hover {
+            background-color: #fb8c00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #c2185b; /* Dark Pink for commands */
+        }
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d84315;
+        }
+        .emoji {
+            font-size: 1.2em;
+        }.self-check {
+            margin-top: 40px;
+            background-color: #fffde7; /* Light yellow */
+            border: 2px solid #ffcc00;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .self-check h2 {
+            color: #ffcc00;
+            border-left-color: #ffcc00;
+        }
+        .self-check ol {
+            padding-left: 20px;
+        }
+        .self-check li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">🚀</span> Місія: Секретний Код Баз Даних (SQL)</h1>
+
+        <p>Привіт, друже! 👋 Сьогодні на тебе чекає захоплююча місія у світі баз даних! Ми поринемо у мову **SQL** (Structured Query Language), щоб навчитися "спілкуватися" з даними, які зберігаються у таблицях. Це як секретний код, який дозволяє тобі **запитувати** інформацію, **додавати** нову та **видаляти** застарілу.</p>
+
+        <p>Твої помічники — це три потужні команди: **<code>SELECT</code>**, **<code>INSERT INTO</code>** та **<code>DELETE FROM</code>**.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🧭</span> Стартуємо: Твоє Робоче Місце</h2>
+
+        <p>1. Перш ніж почати, тобі потрібно відкрити нашу **віртуальну SQL-лабораторію**:</p>
+
+        <a class="button-link" href="https://www.programiz.com/sql/online-compiler" target="_blank">Студія SQL Programiz</a>
+
+        <p>2. На екрані ти побачиш дві частини: вікно для твого **SQL-коду** та вікно для **результату**.</p>
+        <p>3. Щоб виконати будь-яку команду, натискай кнопку **<code>Run</code>**.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🎯</span> Місія 1: Розвідка Даних (Команда <code>SELECT</code>)</h2>
+
+        <div class="theory">
+            <h3>💡 Теорія: SELECT</h3>
+            <p>Команда <code>SELECT</code> — це твій основний інструмент для отримання даних.</p>
+            <ul>
+                <li><strong>Синтаксис:</strong> <code>SELECT</code> <em>що ти хочеш побачити</em> <code>FROM</code> <em>якої таблиці</em>.</li>
+                <li>Використовуй **<code>*</code>** (зірочка), щоб побачити **всі** стовпці.</li>
+                <li>**<code>WHERE</code>** використовується для **фільтрації** рядків (наприклад, тільки клієнти з UK).</li>
+            </ul>
+        </div>
+
+        <h3>Завдання: Обери ОДНЕ з трьох і виконай</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Завдання</th>
+                    <th>Опис</th>
+                    <th>Приклад коду</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>А</td>
+                    <td>Виведи **всі** дані з таблиці **<code>Customers</code>** (Клієнти).</td>
+                    <td><code>SELECT * FROM Customers;</code></td>
+                </tr>
+                <tr>
+                    <td>Б</td>
+                    <td>Знайди **ім'я** та **прізвище** тих клієнтів, яким **22 роки**.</td>
+                    <td><code>SELECT first_name, last_name FROM Customers WHERE age = 22;</code></td>
+                </tr>
+                <tr>
+                    <td>В</td>
+                    <td>Знайди **всі** замовлення (таблиця **<code>Orders</code>**), де **вартість** (<code>amount</code>) товару **більше** ніж 500.</td>
+                    <td><code>SELECT * FROM Orders WHERE amount > 500;</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2><span class="emoji">📝</span> Місія 2: Нові Відомості (Команда <code>INSERT INTO</code>)</h2>
+
+        <div class="theory">
+            <h3>💡 Теорія: INSERT INTO</h3>
+            <p>Команда <code>INSERT INTO</code> дозволяє тобі **додавати** нові рядки (записи) до існуючих таблиць.</p>
+            <ul>
+                <li><strong>Синтаксис:</strong> <code>INSERT INTO</code> <em>назва_таблиці</em> <code>(стовпець1, стовпець2, ...)</code> <code>VALUES</code> <code>(значення1, значення2, ...)</code>.</li>
+            </ul>
+        </div>
+
+        <h3>Завдання: Обери ОДНЕ з трьох і виконай</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Завдання</th>
+                    <th>Опис</th>
+                    <th>Приклад коду</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>А</td>
+                    <td>Додай **себе** як нового клієнта у таблицю **<code>Customers</code>** з ID **6**.</td>
+                    <td><code>INSERT INTO Customers (customer_id, first_name, last_name, age, country) VALUES (6, 'Твоє_Імʼя', 'Твоє_Прізвище', 17, 'Україна');</code></td>
+                </tr>
+                <tr>
+                    <td>Ь</td>
+                    <td>Додай нове замовлення (ID **6**): "Speakers" за 900. Признач клієнту з ID **5**.</td>
+                    <td><code>INSERT INTO Orders (order_id, item, amount, customer_id) VALUES (6, 'Speakers', 900, 5);</code></td>
+                </tr>
+                <tr>
+                    <td>В</td>
+                    <td>Додай нове відправлення (ID **6**). Статус: **<code>Pending</code>**. Клієнт ID **6**.</td>
+                    <td><code>INSERT INTO Shippings (shipping_id, status, customer) VALUES (6, 'Pending', 6);</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="check">
+            <p><strong>📌 Перевірка:</strong> Після того, як виконаєш свій <code>INSERT INTO</code>, додай під ним команду <code>SELECT * FROM назва_таблиці;</code> та виконай обидві команди, щоб побачити новий рядок!</p>
+        </div>
+
+        <hr>
+
+        <h2><span class="emoji">🗑️</span> Місія 3: Очищення (Команда <code>DELETE FROM</code>)</h2>
+
+        <div class="theory">
+            <h3>💡 Теорія: DELETE FROM</h3>
+            <p>Команда <code>DELETE FROM</code> дозволяє **видаляти** рядки з таблиці. **БУДЬ ОБЕРЕЖНИМ!**</p>
+            <ul>
+                <li><strong>Синтаксис:</strong> <code>DELETE FROM</code> <em>назва_таблиці</em> <code>WHERE</code> <em>умова_видалення</em>.</li>
+                <li><strong>Умова <code>WHERE</code> є КРИТИЧНО ВАЖЛИВОЮ!</strong> Без неї ти видалиш **ВСІ** рядки!</li>
+            </ul>
+        </div>
+
+        <h3>Завдання: Обери ОДНЕ з трьох і виконай</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Завдання</th>
+                    <th>Опис</th>
+                    <th>Приклад коду</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>А</td>
+                    <td>Видали **усі** замовлення (таблиця **<code>Orders</code>**), де товар (<code>item</code>) називається **<code>Mouse</code>**.</td>
+                    <td><code>DELETE FROM Orders WHERE item = 'Mouse';</code></td>
+                </tr>
+                <tr>
+                    <td>Б</td>
+                    <td>Видали клієнта з таблиці **<code>Customers</code>**, у якого <code>customer_id</code> дорівнює **3**.</td>
+                    <td><code>DELETE FROM Customers WHERE customer_id = 3;</code></td>
+                </tr>
+                <tr>
+                    <td>В</td>
+                    <td>Видали **усі** відправлення (**<code>Shippings</code>**) зі **статусом** **<code>Pending</code>** (Очікує).</td>
+                    <td><code>DELETE FROM Shippings WHERE status = 'Pending';</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2><span class="emoji">🎉</span> Фініш</h2>
+
+        <p>Ти чудово впорався з основними командами SQL! Тепер ти вмієш **Запитувати**, **Додавати** та **Видаляти** дані.</p>
+        <p><strong>Твоє досягнення:</strong> Набуті навички роботи з командами <code>SELECT</code>, <code>INSERT INTO</code>, та <code>DELETE FROM</code> з використанням фільтрації (<code>WHERE</code>).</p>
+        
+        <div class="self-check">
+            <h2><span class="emoji">🤔</span> Перевір себе!</h2>
+            <p>Дай відповіді на ці запитання, щоб переконатися, що ти засвоїв матеріал:</p>
+            <ol>
+                <li>Яка ключова команда використовується для **отримання** даних з таблиці?</li>
+                <li>Який символ використовується у команді <code>SELECT</code>, щоб вибрати **всі** стовпці?</li>
+                <li>Яка команда потрібна для **додавання** нового клієнта у таблицю <code>Customers</code>?</li>
+                <li>Яка умова є **обов'язковою** при використанні команди <code>DELETE FROM</code> для уникнення видалення **всіх** даних? Напиши ключове слово.</li>
+                <li>Що потрібно додати у кінець SQL-команди, щоб вона була правильно виконана? (Підказка: це символ)</li>
+            </ol>
+            <details>
+                <summary><strong>Відповіді (не читай, поки не спробуєш!):</strong></summary>
+                <p>1. <code>SELECT</code>. 2. <code>*</code> (зірочка). 3. <code>INSERT INTO</code>. 4. <code>WHERE</code>. 5. Крапка з комою (<code>;</code>).</p>
+            </details>
+        </div>
+
+        <p>Бажаєш, щоб я допоміг тобі згадати синтаксис для іншої команди, наприклад, **<code>UPDATE</code>** (для зміни існуючих даних)?</p>
+    </div>
+</body>
+</html>
