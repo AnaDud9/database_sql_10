@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Місія SQL: Створення Таблиць (CREATE TABLE)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f6f8fa;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #00bcd4; /* Cyan */
+            border-bottom: 3px solid #00bcd4;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 2em;
+        }
+        h2 {
+            color: #4caf50; /* Green */
+            margin-top: 30px;
+            padding-left: 10px;
+            border-left: 5px solid #4caf50;
+        }
+        .theory, .check {
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #b2ebf2;
+        }
+        .theory h3 {
+             color: #00838f;
+        }
+        .theory ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .theory li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .theory li::before {
+            content: '🔹';
+            color: #00bcd4;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .button-link {
+            display: inline-block;
+            background-color: #ff5722; /* Deep Orange */
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .button-link:hover {
+            background-color: #f4511e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f4f7;
+            font-weight: bold;
+            color: #333;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d81b60; /* Pink for commands */
+        }
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d84315;
+        }
+        .emoji {
+            font-size: 1.2em;
+        }
+        .self-check {
+            margin-top: 40px;
+            background-color: #fff3e0; /* Light orange */
+            border: 2px solid #ff9800;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .self-check h2 {
+            color: #ff9800;
+            border-left-color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">🏗️</span> Місія: Будуємо Свої Таблиці (CREATE TABLE)</h1>
+
+        <p>Привіт, будівельнику даних! 👋 На минулій місії ми навчилися "спілкуватися" з готовими таблицями, але сьогодні ми підемо далі — навчимося створювати **власні** структури даних! Команда <code>CREATE TABLE</code> — це твій архітектурний план у світі SQL.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🧭</span> Стартуємо: Твоє Робоче Місце</h2>
+
+        <p>Наш інструмент незмінний:</p>
+
+        <a class="button-link" href="https://www.programiz.com/sql/online-compiler" target="_blank">Студія SQL Programiz</a>
+
+        <p class="highlight">Пам'ятай: всі команди пишемо і виконуємо послідовно, натискаючи <code>Run SQL</code>.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🧱</span> Теорія: Стовпці, Типи та Обмеження</h2>
+
+        <div class="theory">
+            <h3>💡 Створення Таблиці: CREATE TABLE</h3>
+            <p>Щоб створити таблицю, потрібно вказати її **назву** та перерахувати **стовпці**, вказавши для кожного стовпця його **тип даних**.</p>
+            <p><strong>Базовий Синтаксис:</strong></p>
+            <pre>
+CREATE TABLE Назва_Таблиці (
+    Назва_Стовпця1 Тип_Даних1,
+    Назва_Стовпця2 Тип_Даних2,
+    ...
+);</pre>
+
+            <h3>Типи Даних (для наших завдань):</h3>
+            <ul>
+                <li><strong><code>INTEGER</code></strong>: Для цілих чисел (наприклад, вік, кількість).</li>
+                <li><strong><code>TEXT</code></strong>: Для тексту (імена, адреси, описи).</li>
+                <li><strong><code>REAL</code></strong>: Для чисел з десятковою частиною (наприклад, ціна з копійками).</li>
+            </ul>
+
+            <h3>Обмеження (Constraints):</h3>
+            <p>Обмеження додають правила до даних, щоб забезпечити їхню якість:</p>
+            <ul>
+                <li><strong><code>PRIMARY KEY</code></strong>: Унікальний ідентифікатор рядка (ID). Дуже важливий!</li>
+                <li><strong><code>NOT NULL</code></strong>: Обов'язкове поле. Це поле не може бути пустим.</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h3>Завдання: Обери ОДИН з двох варіантів і виконай його</h3>
+
+        <hr>
+
+        <h2><span class="emoji">📝</span> Місія 1: Створення Таблиці "Книги"</h2>
+
+        <p>Створити таблицю <code>Books</code> (Книги). Вона повинна містити такі стовпці:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Назва Стовпця</th>
+                    <th>Тип Даних</th>
+                    <th>Обмеження (Правила)</th>
+                    <th>Призначення</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>book_id</code></td>
+                    <td><code>INTEGER</code></td>
+                    <td>PRIMARY KEY</td>
+                    <td>Унікальний номер книги.</td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td>
+                    <td><code>TEXT</code></td>
+                    <td>NOT NULL</td>
+                    <td>Назва книги (обов'язкова).</td>
+                </tr>
+                <tr>
+                    <td><code>author</code></td>
+                    <td><code>TEXT</code></td>
+                    <td>—</td>
+                    <td>Ім'я автора.</td>
+                </tr>
+                <tr>
+                    <td><code>price</code></td>
+                    <td><code>REAL</code></td>
+                    <td>—</td>
+                    <td>Ціна книги.</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="highlight">Напиши команду <code>CREATE TABLE</code>, щоб створити таблицю <code>Books</code> згідно з цією структурою.</p>
+        
+        <details>
+            <summary>Показати підказку (якщо зовсім важко)</summary>
+            <pre>
+CREATE TABLE Books (
+    book_id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    author TEXT,
+    price REAL
+);</pre>
+        </details>
+        
+        <hr>
+
+        <h2><span class="emoji">⚙️</span> Місія 2: Створення Таблиці "Музиканти"</h2>
+
+        <p><code>Musicians</code> (Музиканти). Тут будуть додаткові обмеження, щоб уникнути помилок при введенні даних.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Назва Стовпця</th>
+                    <th>Тип Даних</th>
+                    <th>Обмеження (Правила)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>musician_id</code></td>
+                    <td><code>INTEGER</code></td>
+                    <td>PRIMARY KEY</td>
+                </tr>
+                <tr>
+                    <td><code>stage_name</code></td>
+                    <td><code>TEXT</code></td>
+                    <td>NOT NULL</td>
+                </tr>
+                <tr>
+                    <td><code>genre</code></td>
+                    <td><code>TEXT</code></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><code>is_band</code></td>
+                    <td><code>INTEGER</code></td>
+                    <td>NOT NULL</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="highlight">Напиши команду <code>CREATE TABLE</code>, щоб створити таблицю <code>Musicians</code> згідно з цією структурою.</p>
+
+        <hr>
+
+        <h2><span class="emoji">➕</span> Бонус: Додавання Даних (Повторення)</h2>
+        
+        <p>Твої таблиці порожні! Щоб переконатися, що вони працюють, додай хоча б один запис у таблицю <code>Books</code> (Місія 1) чи <code>Musicians</code> (Місія 2).</p>
+        
+        <details>
+            <summary>Показати підказку (якщо не пам'ятаєш, як додати щось у таблицю)</summary>
+        <pre>-- Використай цю команду, підставивши свої значення!
+INSERT INTO Books (book_id, title, author, price) VALUES (1, 'Володар Перснів', 'Толкін', 450.50);
+
+-- А тепер перевір:
+SELECT * FROM Books;</pre>
+        </details>
+        <hr>
+
+        <h2><span class="emoji">🎉</span> Фініш</h2>
+
+        <p>Ти навчився створювати каркас бази даних, використовуючи команду <code>CREATE TABLE</code> та задаючи **типи даних** і **обмеження** для стовпців. Ти тепер справжній архітектор даних!</p>
+
+        <div class="self-check">
+            <h2><span class="emoji">🤔</span> Перевір себе!</h2>
+            <p>Дай відповіді на ці запитання, не підглядаючи у теорію:</p>
+            <ol>
+                <li>Яке ключове слово використовується, щоб стовпець не міг залишатися порожнім?</li>
+                <li>Який тип даних ти обереш для збереження числа 3.14 (число Пі)?</li>
+                <li>Що таке <code>PRIMARY KEY</code> і чому його варто використовувати?</li>
+                <li>Напиши, як буде виглядати початок команди, якщо ти хочеш створити таблицю з назвою `Cars`?</li>
+            </ol>
+            <p>А для видалення таблиці, якщо вона більше не потрібна, ми використовуємо команду <code>DROP TABLE назва_таблиці</code>.</p>
+        </div>
+
+        <a href="./index.html">Попередній урок</a>
+    </div>
+</body>
+</html>
