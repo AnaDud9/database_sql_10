@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Місія SQL: Впорядкування та Пошук Даних</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f7; /* Light Blue-Grey */
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #9c27b0; /* Purple */
+            border-bottom: 3px solid #9c27b0;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 2em;
+        }
+        h2 {
+            color: #03a9f4; /* Light Blue */
+            margin-top: 30px;
+            padding-left: 10px;
+            border-left: 5px solid #03a9f4;
+        }
+        h3 {
+            color: #03a9f4;
+        }
+        .theory, .analogy, .task-block {
+            background-color: #e1f5fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #b3e5fc;
+        }
+        .analogy {
+            background-color: #fff8e1; /* Light Yellow */
+            border: 1px dashed #ffb300;
+            padding: 15px;
+            font-style: italic;
+        }
+        .button-link {
+            display: inline-block;
+            background-color: #ff5722; /* Deep Orange */
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .button-link:hover {
+            background-color: #f4511e;
+        }
+        code {
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #d76b92; /* Pink for commands */
+            font-weight: bold;
+        }
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f4f7;
+            font-weight: bold;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d84315;
+        }
+        .emoji {
+            font-size: 1.2em;
+        }
+        .task-block {
+            background-color: #e8f5e9; /* Light Green for tasks */
+            border: 2px solid #66bb6a;
+            padding: 20px;
+        }
+        .task-block h3 {
+            color: #388e3c;
+            border-bottom: 2px dashed #66bb6a;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">🔍</span> Місія: Найкращий Пошуковець Даних</h1>
+
+        <p>Привіт, майстре запитів! 👋 До цього ми вміли лише діставати дані (<code>SELECT</code>) і фільтрувати їх за простими правилами (<code>WHERE</code>). Сьогодні ми навчимося, як у <span class="highlight">величезному масиві даних</span> швидко знайти саме те, що нам потрібно, і показати це у зручному вигляді. Ми опануємо: сортування, обмеження та складну фільтрацію.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🧭</span> Стартуємо: Твоє Робоче Місце</h2>
+
+        <p>Традиційно, працюємо тут:</p>
+
+        <a class="button-link" href="https://www.programiz.com/sql/online-compiler" target="_blank">Студія SQL Programiz</a>
+
+        <hr>
+
+        <h2><span class="emoji">➡️</span> Частина 1: Впорядкування (Сортування) Даних</h2>
+
+        <div class="theory">
+            <h3>Команда <span class="highlight">ORDER BY</span></h3>
+            <p>Ця команда відповідає за сортування результатів. Тобі не потрібен Excel, щоб красиво вивести дані!</p>
+            <ul>
+                <li><span class="highlight">ASC (Ascending):</span> Сортування за <span class="highlight">зростанням</span> (від А до Я, від 1 до 100). Це значення за замовчуванням.</li>
+                <li><span class="highlight">DESC (Descending):</span> Сортування за <span class="highlight">спаданням</span> (від Я до А, від 100 до 1).</li>
+            </ul>
+        </div>
+
+        <div class="analogy">
+            <p>Аналогія: Команда <code>ORDER BY</code> — це як натискання на заголовок стовпця у Google Таблицях, щоб відсортувати список. <code>ORDER BY price DESC</code> — означає: "Покажи мені товари, починаючи з найдорожчого".</p>
+        </div>
+
+        <pre><code>
+-- Приклад: Вибрати всіх клієнтів і відсортувати їх за віком від наймолодшого до найстаршого
+SELECT * FROM Customers
+ORDER BY age ASC; 
+        </code></pre>
+
+        <hr>
+
+        <h2><span class="emoji">✂️</span> Частина 2: Обмеження Результатів</h2>
+
+        <div class="theory">
+            <h3>Команда <span class="highlight">LIMIT</span></h3>
+            <p>Ця команда використовується, щоб показати лише <span class="highlight">перші N записів</span>. Це дуже корисно, коли ти шукаєш "топ-3" чи "топ-10" найдорожчих товарів.</p>
+        </div>
+
+        <div class="analogy">
+            <p>Аналогія: <code>LIMIT 5</code> — це як прокрутка сторінки з результатами пошуку лише до п'ятого пункту. Все, що нижче, нас не цікавить.</p>
+        </div>
+
+        <pre><code>
+-- Приклад: Знайти 3 найбільш оплачувані замовлення. Ми спочатку сортуємо, а потім обмежуємо.
+SELECT item, amount FROM Orders
+ORDER BY amount DESC
+LIMIT 3;
+        </code></pre>
+
+        <hr>
+
+        <h2><span class="emoji">🧠</span> Частина 3: Складна Фільтрація (WHERE)</h2>
+
+        <div class="theory">
+            <p>Ми вже знаємо <code>WHERE</code>, але сьогодні додамо потужні інструменти для гнучкого пошуку:</p>
+            <ul>
+                <li><span class="highlight">Оператори <code>AND</code> та <code>OR</code>:</span> Дозволяють комбінувати умови.
+                    <ul>
+                        <li><code>AND</code>: Виконується, якщо <span class="highlight">ОБИДВІ</span> умови істинні.</li>
+                        <li><code>OR</code>: Виконується, якщо <span class="highlight">ХОЧА Б ОДНА</span> умова істинна.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Оператор <code>IN</code>:</span> Перевіряє, чи значення стовпця дорівнює <span class="highlight">одному зі значень у списку</span>.</li>
+                <li><span class="highlight">Оператор <code>LIKE</code>:</span> Дозволяє шукати за <span class="highlight">шаблоном</span> (частковою відповідністю).</li>
+            </ul>
+        </div>
+
+        <div class="analogy">
+            <p>Приклади:
+                <ul>
+                    <li><code>WHERE country = 'USA' AND age > 30</code>: Знайти клієнтів, які є з США <span class="highlight">І</span> старші 30 років.</li>
+                    <li><code>WHERE country IN ('UK', 'USA')</code>: Знайти клієнтів, які є <span class="highlight">АБО</span> з UK, <span class="highlight">АБО</span> з USA.</li>
+                    <li><code>WHERE first_name LIKE 'Jo%'</code>: Знайти всіх, чиє ім'я <span class="highlight">починається на "Jo"</span> (John, Joseph...). Символ <code>%</code> означає "будь-яка кількість символів".</li>
+                </ul>
+            </p>
+        </div>
+
+        <hr>
+
+        <div class="task-block">
+            <h2><span class="emoji">📝</span> Практичне завдання</h2>
+
+            <h3>Обери ОДНЕ завдання, яке тобі до вподоби, і виконай його:</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Рівень</th>
+                        <th>Опис Завдання</th>
+                        <th>Підказка (Які команди потрібні?)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>А</td>
+                        <td>Виведи всіх клієнтів (таблиця <code>Customers</code>) і відсортуй їх за <span class="highlight">прізвищем</span> (<code>last_name</code>) у порядку зростання.</td>
+                        <td><code>SELECT</code>, <code>FROM</code>, <code>ORDER BY</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>Б</td>
+                        <td>Знайди <span class="highlight">два найдешевші</span> товари у таблиці <code>Orders</code>. Виведи їх назву (<code>item</code>) та вартість (<code>amount</code>).</td>
+                        <td><code>SELECT</code>, <code>ORDER BY</code> (ASC), <code>LIMIT</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>В</td>
+                        <td>Виведи імена та прізвища тих клієнтів, які <span class="highlight">АБО</span> з країни 'UK', <span class="highlight">АБО</span> чиє ім'я починається на літеру 'R'.</td>
+                        <td><code>SELECT</code>, <code>WHERE</code> з оператором <code>OR</code> та оператором <code>LIKE</code>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <div class="self-check">
+            <h2><span class="emoji">🤔</span> Перевір себе!</h2>
+            <p>Дай відповіді на ці запитання:</p>
+            <ol>
+                <li>Як ти відсортуєш дані від найбільшого значення до найменшого?</li>
+                <li>Який оператор дозволяє тобі знайти клієнтів, які живуть у Франції, Німеччині або Італії, не пишучи три окремі умови <code>OR</code>?</li>
+                <li>Якщо ти хочеш знайти "топ-5" найкращих студентів, яка команда повинна йти в кінці запиту після сортування?</li>
+                <li>Як ти знайдеш усі прізвища, що закінчуються на "son"?</li>
+            </ol>
+        </div>
+        <a href="./keys.html">Попередній урок</a>
+        <a href="#">Наступний урок</a>
+    </div>
+</body>
+</html>
