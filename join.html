@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Місія SQL: Об'єднання Таблиць (JOIN)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #fce4ec; /* Light Pink */
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #d81b60; /* Pink */
+            border-bottom: 3px solid #d81b60;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 2em;
+        }
+        h2 {
+            color: #00bcd4; /* Cyan */
+            margin-top: 30px;
+            padding-left: 10px;
+            border-left: 5px solid #00bcd4;
+        }
+        h3 {
+            color: #00bcd4;
+        }
+        .theory, .analogy, .task-block {
+            background-color: #e0f7fa; /* Light Cyan */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #b2ebf2;
+        }
+        .analogy {
+            background-color: #f9fbe7; /* Creamy Yellow */
+            border: 1px dashed #c0ca33;
+            padding: 15px;
+            font-style: italic;
+        }
+        .button-link {
+            display: inline-block;
+            background-color: #ff5722; /* Deep Orange */
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .button-link:hover {
+            background-color: #f4511e;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #4a148c; /* Dark Purple for commands */
+            font-weight: bold;
+        }
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f4f7;
+            font-weight: bold;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d81b60;
+        }
+        .emoji {
+            font-size: 1.2em;
+        }
+        .task-block {
+            background-color: #fff3e0; /* Light Orange for tasks */
+            border: 2px solid #ffcc80;
+            padding: 20px;
+        }
+        .task-block h3 {
+            color: #ef6c00;
+            border-bottom: 2px dashed #ffb74d;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">🤝</span> Місія: Об'єднання Секретних Файлів (JOIN)</h1>
+
+        <p>Привіт, координаторе даних! 👋 Ми вже знаємо, що інформація у великих базах даних розкидана по багатьох таблицях, пов’язаних ключами. Але як поєднати, наприклад, ім'я клієнта з його замовленням, якщо вони лежать у різних "папках"? Відповідь — команда <span class="highlight"><code>JOIN</code></span>!</p>
+
+        <p><code>JOIN</code> — це як збірний запит, який дозволяє "зшити" два або більше файлів за спільним полем (ключем), щоб отримати єдиний, повний результат.</p>
+
+        <hr>
+
+        <h2><span class="emoji">🧭</span> Стартуємо: Твоє Робоче Місце</h2>
+
+        <p>Знову за роботою, щоб перевірити теорію на практиці:</p>
+
+        <a class="button-link" href="https://www.programiz.com/sql/online-compiler" target="_blank">Студія SQL Programiz</a>
+
+        <hr>
+
+        <h2><span class="emoji">💡</span> Частина 1: Синтаксис JOIN та INNER JOIN</h2>
+
+        <div class="theory">
+            <h3>Головний Секрет: Зв'язок на Ключах</h3>
+            <p>Щоб об'єднати таблиці, нам завжди потрібен спільний "міст" — це той самий <span class="highlight">Зовнішній Ключ</span>, який посилається на <span class="highlight">Первинний Ключ</span>.</p>
+            <p>У наших старих таблицях:</p>
+            <ul>
+                <li>Таблиця <span class="highlight">Customers</span> має ключ <code>customer_id</code> (Первинний).</li>
+                <li>Таблиця <span class="highlight">Orders</span> має ключ <code>customer_id</code> (Зовнішній).</li>
+            </ul>
+
+            <h3>Команда <span class="highlight">INNER JOIN</span></h3>
+            <p>Це найпоширеніший тип об'єднання. Він вибирає лише ті рядки, які <span class="highlight">мають збіги в ОБОХ таблицях</span>.</p>
+        </div>
+
+        <div class="analogy">
+            <p>Аналогія: <span class="highlight"><code>INNER JOIN</code></span> — це як складання двох списків: "Список учнів, які мають абонемент у бібліотеці" та "Список книг, які зараз на руках". <code>INNER JOIN</code> покаже тобі лише тих учнів, які справді <span class="highlight">зараз мають</span> книгу на руках. Якщо учень не брав книг, його не буде у результаті.</p>
+        </div>
+
+        <pre>-- Синтаксис INNER JOIN (Об'єднай Клієнтів та Замовлення)
+SELECT
+    T1.first_name, 
+    T2.item, 
+    T2.amount 
+FROM
+    Customers AS T1 -- Таблиця 1
+INNER JOIN
+    Orders AS T2    -- Таблиця 2
+ON
+    T1.customer_id = T2.customer_id; -- Умова, за якою з'єднуємо (ключі)</pre>
+
+        <hr>
+
+        <h2><span class="emoji">🌍</span> Частина 2: Інші Типи Об'єднання</h2>
+
+        <p>Іноді нам потрібно побачити дані, навіть якщо вони не мають відповідності в іншій таблиці. Для цього існують "Зовнішні об'єднання":</p>
+
+        <div class="theory">
+            <h3><span class="highlight">LEFT JOIN</span> (LEFT OUTER JOIN)</h3>
+            <p>Вибирає <span class="highlight">ВСІ записи</span> з <span class="highlight">ЛІВОЇ</span> таблиці і лише ті, що збігаються, з правої.</p>
+            <p>Аналогія: Ти виводиш <span class="highlight">УСІХ учнів</span> (Ліва таблиця) і поруч пишеш, чи взяли вони книгу. Якщо учень не брав книги, його ім'я все одно буде у списку, а у стовпці "Книга" буде пусто (NULL).</p>
+        </div>
+
+        <div class="theory">
+            <h3><span class="highlight">RIGHT JOIN</span> (RIGHT OUTER JOIN)</h3>
+            <p>Працює протилежно до LEFT JOIN: вибирає <span class="highlight">ВСІ записи</span> з <span class="highlight">ПРАВОЇ</span> таблиці і лише ті, що збігаються, з лівої.</p>
+        </div>
+
+        <div class="analogy">
+            <p>Для нас найважливішим є <span class="highlight"><code>INNER JOIN</code></span> (точний збіг) та <span class="highlight"><code>LEFT JOIN</code></span> (показати все з однієї таблиці, навіть без збігів).</p>
+        </div>
+
+        <div>
+            <img src="join.png" alt="Зображення з поясненням типів JOIN" style="width:100%; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+        </div>
+
+        <hr>
+
+        <div class="task-block">
+            <h2><span class="emoji">📝</span> Місія: Об'єднання Інформації</h2>
+
+            <h3>Обери ОДНЕ завдання, яке тобі до вподоби, і виконай його:</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Рівень</th>
+                        <th>Опис Завдання</th>
+                        <th>Підказка (Ключові кроки)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>А</td>
+                        <td>Об'єднай таблиці <span class="highlight">Customers</span> та <span class="highlight">Orders</span> (використай <code>INNER JOIN</code>), щоб вивести <span class="highlight">ім'я клієнта</span> та <span class="highlight">назву товару</span>, який він купив.</td>
+                        <td><code>INNER JOIN</code> на <code>customer_id</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>Б</td>
+                        <td>Виведи <span class="highlight">прізвище клієнта</span> та <span class="highlight">статус його відправлення</span>. Використовуй <code>INNER JOIN</code>, щоб зв'язати таблиці <code>Customers</code> та <code>Shippings</code>.</td>
+                        <td><code>INNER JOIN</code> на спільному полі (ключ).</td>
+                    </tr>
+                    <tr>
+                        <td>В</td>
+                        <td>Знайди <span class="highlight">імена всіх клієнтів</span> (навіть тих, які <span class="highlight">НЕ</span> робили замовлень) та перелік їхніх товарів. Якщо замовлень немає, у полі "товар" має бути пусто.</td>
+                        <td><code>LEFT JOIN</code> таблиць <code>Customers</code> (Ліва) та <code>Orders</code> (Права).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2><span class="emoji">🎉</span> Фініш</h2>
+
+        <p>Ти засвоїв, як створювати складні звіти, збираючи дані з різних куточків бази даних. Тепер ти можеш бачити повну картину!</p>
+
+        <div class="self-check">
+            <h2><span class="emoji">🤔</span> Перевір себе!</h2>
+            <p>Дай відповіді на ці запитання:</p>
+            <ol>
+                <li>Яка команда є обов'язковою частиною <code>JOIN</code> і вказує на спільні ключі для об'єднання?</li>
+                <li>Який тип <code>JOIN</code> використовується, коли ми хочемо отримати тільки ті записи, які є в обох таблицях?</li>
+                <li>Якщо ми робимо <code>LEFT JOIN</code> таблиць А і Б, і запис із таблиці А не має збігу в таблиці Б, що буде у стовпцях таблиці Б?</li>
+                <li>Чому не можна об'єднувати таблиці без спільного ключа?</li>
+            </ol>
+        </div>
+        <a href="./search.html">Попередній урок</a>
+        <a href="#">Наступний урок</a>
+    </div>
+</body>
+</html>
