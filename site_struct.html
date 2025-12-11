@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Структура веб-сайту | 10 клас</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            background-color: #f0f4f8;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            animation: fadeIn 0.5s ease-in-out;
+            padding: 2rem;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wireframe-box {
+            border: 2px dashed #cbd5e1;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+
+        .highlight {
+            border: 3px solid #3b82f6;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .code-snippet {
+            font-family: 'Courier New', monospace;
+            background: #1e293b;
+            color: #a5b4fc;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .nav-btn {
+            position: absolute;
+            bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .nav-btn:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .prev-btn { left: 2rem; }
+        .next-btn { right: 2rem; }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+
+        /* Mockup Layout */
+        .layout-grid {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "nav nav"
+                "main aside"
+                "footer footer";
+            grid-template-rows: 60px 40px 1fr 50px;
+            grid-template-columns: 3fr 1fr;
+            gap: 10px;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            padding: 10px;
+            background: #e2e8f0;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide-1">
+        <div class="text-center">
+            <div class="inline-block p-4 rounded-full bg-blue-100 text-blue-600 mb-6 text-4xl">
+                <i class="fas fa-sitemap"></i>
+            </div>
+            <h1 class="text-6xl font-extrabold text-slate-800 mb-4">Структура веб-сайту</h1>
+            <h2 class="text-2xl text-slate-600 mb-8">Інформатика 10 клас</h2>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto">
+                Розбираємо основні "цеглинки", з яких складається сучасний інтернет.
+                <br>Від шапки до підвалу.
+            </p>
+            <div class="mt-12 text-sm text-slate-400">Натисніть стрілку вправо або пробіл, щоб почати</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: General Layout -->
+    <div class="slide" id="slide-2">
+        <h2 class="text-4xl font-bold text-slate-800 mb-8">Анатомія сторінки</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="layout-grid">
+                <div class="wireframe-box" style="grid-area: header">Header</div>
+                <div class="wireframe-box" style="grid-area: nav">Navigation</div>
+                <div class="wireframe-box" style="grid-area: main">Main Content</div>
+                <div class="wireframe-box" style="grid-area: aside">Sidebar (Aside)</div>
+                <div class="wireframe-box" style="grid-area: footer">Footer</div>
+            </div>
+            <div class="max-w-md">
+                <p class="text-xl text-slate-700 mb-4">
+                    Сайт схожий на будинок або газету. У нього є чітка структура, яка допомагає користувачеві орієнтуватися.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-slate-600">
+                    <li>Стандартне розташування елементів</li>
+                    <li>Зручність для користувача (UX)</li>
+                    <li>Семантична правильність (для пошуковиків)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Header -->
+    <div class="slide" id="slide-3">
+        <h2 class="text-4xl font-bold text-slate-800 mb-6">1. Header (Шапка)</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 w-full max-w-5xl">
+            <div class="layout-grid">
+                <div class="wireframe-box highlight" style="grid-area: header">HEADER <br> (Лого, Контакти, Пошук)</div>
+                <div class="wireframe-box opacity-30" style="grid-area: nav">Navigation</div>
+                <div class="wireframe-box opacity-30" style="grid-area: main">Main Content</div>
+                <div class="wireframe-box opacity-30" style="grid-area: aside">Sidebar</div>
+                <div class="wireframe-box opacity-30" style="grid-area: footer">Footer</div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+                    <h3 class="text-xl font-bold mb-3">HTML тег: <span class="code-snippet">&lt;header&gt;</span></h3>
+                    <p class="mb-4 text-slate-600">Верхня частина сайту, яку видно на всіх сторінках.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Логотип та назва</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Кнопка входу/реєстрації</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Рядок пошуку</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Перемикач мови</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Navigation -->
+    <div class="slide" id="slide-4">
+        <h2 class="text-4xl font-bold text-slate-800 mb-6">2. Navigation (Меню)</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 w-full max-w-5xl">
+            <div class="layout-grid">
+                <div class="wireframe-box opacity-30" style="grid-area: header">Header</div>
+                <div class="wireframe-box highlight" style="grid-area: nav">NAV <br> (Головна, Про нас, Послуги)</div>
+                <div class="wireframe-box opacity-30" style="grid-area: main">Main Content</div>
+                <div class="wireframe-box opacity-30" style="grid-area: aside">Sidebar</div>
+                <div class="wireframe-box opacity-30" style="grid-area: footer">Footer</div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-indigo-500">
+                    <h3 class="text-xl font-bold mb-3">HTML тег: <span class="code-snippet">&lt;nav&gt;</span></h3>
+                    <p class="mb-4 text-slate-600">Карта вашого сайту. Дозволяє переходити між розділами.</p>
+                    <p class="text-sm text-slate-500 mb-2">Де може бути?</p>
+                    <ul class="space-y-2">
+                        <li class="bg-slate-100 p-2 rounded">Горизонтально під хедером</li>
+                        <li class="bg-slate-100 p-2 rounded">Всередині хедера (справа)</li>
+                        <li class="bg-slate-100 p-2 rounded">Меню "Гамбургер" (на мобільних)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Main Content -->
+    <div class="slide" id="slide-5">
+        <h2 class="text-4xl font-bold text-slate-800 mb-6">3. Main (Основний контент)</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 w-full max-w-5xl">
+            <div class="layout-grid">
+                <div class="wireframe-box opacity-30" style="grid-area: header">Header</div>
+                <div class="wireframe-box opacity-30" style="grid-area: nav">Navigation</div>
+                <div class="wireframe-box highlight bg-blue-50" style="grid-area: main">
+                    MAIN <br> 
+                    &lt;article&gt;<br>
+                    &lt;section&gt;
+                </div>
+                <div class="wireframe-box opacity-30" style="grid-area: aside">Sidebar</div>
+                <div class="wireframe-box opacity-30" style="grid-area: footer">Footer</div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold mb-3">HTML тег: <span class="code-snippet">&lt;main&gt;</span></h3>
+                    <p class="mb-4 text-slate-600">Унікальна частина сторінки. Те, заради чого користувач прийшов.</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-800">&lt;section&gt;</span>
+                            <span class="text-slate-500">Тематичні розділи (напр. "Наші переваги")</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-800">&lt;article&gt;</span>
+                            <span class="text-slate-500">Статті, пости блогу, картки товарів</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Aside -->
+    <div class="slide" id="slide-6">
+        <h2 class="text-4xl font-bold text-slate-800 mb-6">4. Aside (Сайдбар)</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 w-full max-w-5xl">
+            <div class="layout-grid">
+                <div class="wireframe-box opacity-30" style="grid-area: header">Header</div>
+                <div class="wireframe-box opacity-30" style="grid-area: nav">Navigation</div>
+                <div class="wireframe-box opacity-30" style="grid-area: main">Main</div>
+                <div class="wireframe-box highlight" style="grid-area: aside">ASIDE <br> (Додатково)</div>
+                <div class="wireframe-box opacity-30" style="grid-area: footer">Footer</div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold mb-3">HTML тег: <span class="code-snippet">&lt;aside&gt;</span></h3>
+                    <p class="mb-4 text-slate-600">Бічна панель. Містить інформацію, що непрямо стосується основного контенту.</p>
+                    <h4 class="font-bold mb-2">Що тут розміщують?</h4>
+                    <ul class="grid grid-cols-2 gap-2 text-sm">
+                        <li class="bg-yellow-50 p-2 rounded">Рекламні банери</li>
+                        <li class="bg-yellow-50 p-2 rounded">Схожі статті</li>
+                        <li class="bg-yellow-50 p-2 rounded">Хмара тегів</li>
+                        <li class="bg-yellow-50 p-2 rounded">Календар</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Footer -->
+    <div class="slide" id="slide-7">
+        <h2 class="text-4xl font-bold text-slate-800 mb-6">5. Footer (Підвал)</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 w-full max-w-5xl">
+            <div class="layout-grid">
+                <div class="wireframe-box opacity-30" style="grid-area: header">Header</div>
+                <div class="wireframe-box opacity-30" style="grid-area: nav">Navigation</div>
+                <div class="wireframe-box opacity-30" style="grid-area: main">Main</div>
+                <div class="wireframe-box opacity-30" style="grid-area: aside">Aside</div>
+                <div class="wireframe-box highlight bg-slate-800 text-white border-slate-600" style="grid-area: footer; color: white;">FOOTER</div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-slate-700">
+                    <h3 class="text-xl font-bold mb-3">HTML тег: <span class="code-snippet">&lt;footer&gt;</span></h3>
+                    <p class="mb-4 text-slate-600">Найнижча частина сайту. Зазвичай однакова для всіх сторінок.</p>
+                    <ul class="space-y-2 text-slate-700">
+                        <li>© Авторське право (Copyright)</li>
+                        <li>Контактна інформація та адреса</li>
+                        <li>Посилання на соцмережі</li>
+                        <li>Повтор навігації (карта сайту)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Quiz/Summary -->
+    <div class="slide" id="slide-8">
+        <h2 class="text-4xl font-bold text-slate-800 mb-8">Підсумок</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer group">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">1</div>
+                    <h3 class="text-xl font-bold">Header</h3>
+                </div>
+                <p class="text-slate-500 group-hover:text-slate-800">Обличчя сайту. Логотип та вхід.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer group">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">2</div>
+                    <h3 class="text-xl font-bold">Main</h3>
+                </div>
+                <p class="text-slate-500 group-hover:text-slate-800">Суть сторінки. Стаття або товар.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer group">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center font-bold">3</div>
+                    <h3 class="text-xl font-bold">Aside</h3>
+                </div>
+                <p class="text-slate-500 group-hover:text-slate-800">Додатково. Реклама або посилання.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer group">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-10 h-10 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold">4</div>
+                    <h3 class="text-xl font-bold">Footer</h3>
+                </div>
+                <p class="text-slate-500 group-hover:text-slate-800">Технічна інформація та контакти.</p>
+            </div>
+        </div>
+        <div class="mt-12 text-center text-slate-400">
+            <p>Дякую за увагу!</p>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="progress-bar" id="progress"></div>
+    <button class="nav-btn prev-btn" onclick="changeSlide(-1)">
+        <i class="fas fa-arrow-left mr-2"></i> Назад
+    </button>
+    <button class="nav-btn next-btn" onclick="changeSlide(1)">
+        Далі <i class="fas fa-arrow-right ml-2"></i>
+    </button>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progress');
+
+        function updateProgress() {
+            const width = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = width + '%';
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (index >= totalSlides) index = 0;
+            if (index < 0) index = totalSlides - 1;
+            
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            updateProgress();
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
